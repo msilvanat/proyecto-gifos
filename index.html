@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Gif OS</title>
+
+    <link id="icon" rel="shortcut icon" type="image/x-icon" href="./assets/logo/logo-icon/gifOF_logo.ico">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Chakra+Petch:400,700&display=swap" rel="stylesheet">
+
+    <!-- Css -->
+    <link rel="stylesheet" href="./css/style.css">
+    <link id="theme" rel="stylesheet" href="./css/style.css">
+
+    <!-- Script -->
+    <script src="./js/contador.js"></script>
+    <script src="./js/main.js"></script>
+
+</head>
+
+<body>
+    <header>
+        <p>¡Bienvenidos/as a Guifos.com! ——————Donde los gifs están.////// Número de visitas:<span
+                id="cuentavisitas"></span></p>
+    </header>
+
+    <section class="global-container">
+        <h2 class="encabezado_seccion">Encabezado global</h2>
+        <div class="content-options">
+
+            <!-- Logo -->
+            <div class="logo" id="logo">
+                <img id="logo_claro" src="./assets/logo/gifOF_logo.png" alt="logo_claro">
+                <img id="logo_dark" src="./assets/logo/gifOF_logo_dark.png" alt="logo_dark">
+            </div>
+
+            <!-- Menu options -->
+            <nav class="menu-options">
+
+                <button class="btn_global" id="btn_create_gif">Crear Guifos</button>
+
+                <!-- Themes Selector -->
+                <div class="btn_select_theme">
+                    <button class="btn_global" id="btn-text">
+                        Elegir Tema
+                    </button>
+
+                    <!-- Dropdown button -->
+                    <button class="btn_global" id="btn-select">
+                        <span id="content-dropdown">
+                            <span id="dropdown-icon"></span>
+                        </span>
+                    </button>
+
+                    <!-- Dropdown menu -->
+                    <ul class="select-theme" id="dropdown">
+                        <li id="theme1"><a id="t1" href="#">Sailor Day</a></li>
+                        <li id="theme2"><a id="t2" href="#">Sailor Night</a></li>
+                    </ul>
+                </div>
+
+                <p id="enlace_mis_guifs"><a href="#" id="mis_gifos">Mis Gifos</a></p>
+
+            </nav>
+
+        </div>
+
+        <!-- Main Section -->
+        <section class="main">
+            <h2 class="encabezado_seccion">Main</h2>
+
+            <!-- Searcher -->
+            <div class="content-buscar" id="content-buscar">
+                <p id="buscador-title">Buscar</p>
+                <div class="buscar">
+                    <input type="text" id="buscador" placeholder="Busca gifs, hashtags, temas, busca lo que quieras…">
+                    <button class="btn_inactive" id="btn-buscar" disabled>
+                        <span>
+                            <img id="lupa_inactive" src="./assets/icons/lupa_inactive.svg" alt="lupa_inactive">
+                            <img id="lupa_active" src="./assets/icons/lupa.svg" alt="lupa">
+                            <img id="lupa_inactive_dark" src="./assets/icons/combined_shape.svg"
+                                alt="lupa_inactive_dark">
+                            <img id="lupa_light" src="./assets/icons/lupa_light.svg" alt="lupa_light">
+                        </span>
+                        Buscar
+                    </button>
+                </div>
+                <div class="busqueda_sugerida" id="busqueda_sugerida">
+                    <button class="busqueda_sugerida_btn" id="sugerencia1"></button>
+                    <button class="busqueda_sugerida_btn" id="sugerencia2">Deportes</button>
+                    <button class="busqueda_sugerida_btn" id="sugerencia3">Animales</button>
+                </div>
+            </div>
+
+            <!-- Search history -->
+            <div class="content_busquedas" id="content_busquedas">
+            </div>
+
+            <!-- Suggestions -->
+            <div class="content-sugerencias" id="content-sugerencias">
+                <input type="text" class="input-data" id="sugeridos" value="Sugeridos">
+                <div class="content_mis_gifos" id="content_mis_gifos"></div>
+                <div class="content_guif_sugeridos" id="guif-sugeridos">
+                    <div class="guif_sugeridos" id="hidden">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Trending -->
+            <div class="content-tendencias" id="content-tendencias">
+                <input type="text" class="input-data" value="Tendencias:" id="tendencias">
+                <div class="trending_gifs" id="trending">
+                </div>
+            </div>
+
+        </section>
+
+    </section>
+
+</body>
+
+</html>

@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge"> 
+        <title>Gif OS</title>
+        
+        <link id="icon" rel="shortcut icon" type="image/x-icon" href="./assets/logo/logo-icon/gifOF_logo.ico">
+        <!-- Google Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Chakra+Petch:400,700&display=swap" rel="stylesheet">
+        
+        <!-- Css -->
+        <link rel="stylesheet" href="./css/style.css">
+        <link id="theme" rel="stylesheet" href="./css/style.css">
+        <link rel="stylesheet" href="./css/crear_guif.css">
+
+        <!-- RecordRTC -->
+        <script src="https://www.WebRTC-Experiment.com/RecordRTC.js"></script>
+        <!-- Contador -->
+        <script src="./js/contador.js"></script>
+        <!-- Create gif-->
+        <script src="./js/crear_guif.js"></script>
+        
+    </head>
+    <body>
+        <header>
+            <p>¡Bienvenidos/as a Guifos.com! ——————Donde los gifs están.////// Número de visitas:<span id="cuentavisitas"></span></p>
+        </header>
+        
+        <section class="global-container">
+            <h2 class="encabezado_seccion">Global</h2>
+            <div class="content-options">    
+
+                <!-- Logo -->
+                <div class="logo">
+                    <span id="volver"><img src="./assets/icons/arrow.svg" alt="atras"></span>
+                    <img id="logo_claro" src="./assets/logo/gifOF_logo.png" alt="logo_claro">
+                    <img id="logo_dark" src="./assets/logo/gifOF_logo_dark.png" alt="logo_dark">
+                </div>
+            </div>
+
+            <!-- Main -->
+            <section class="main">
+                <h2 class="encabezado_seccion">Main</h2>
+
+                <!-- Create Gif -->
+                <div class="content_crear_guif" id="content_crear_guif">
+                    <div class="titulo"><p>Crear Guifos</p></div>
+                    <div class="encabezado">
+                        <span><img src="./assets/img/window_img.png" alt="ventana_windows"></span>
+                        <h2>Aquí podrás crear tus propios guifos</h2>
+                    </div>
+                    <div class="info">
+                        <div class="texto">
+                            <p>Crear tu <span>guifo</span>es muy fácil, graba cualquier imagen 
+                            con tu cámara y obtén guifos personalizados. Los pasos para crear tu 
+                            guifo son:</p>        
+                        </div>
+                        <div class="texto">
+                            <span>1)</span><p>Dar permisos de acceso a la cámara 
+                            (sólo por el tiempo de uso)</p>   
+                        </div>    
+                        <div class="texto">
+                            <span>2)</span><p>Capturar tu momento guifo</p>    
+                        </div>    
+                        <div class="texto">
+                            <span>3)</span><p>Revisar el momento</p>  
+                        </div>    
+                        <div class="texto">   
+                        <span>4)</span><p>Listo para subir y compartir!</p> 
+                        </div>    
+                        <div class="texto">   
+                        <p>¿Quieres comenzar a crear tu <span>guifo</span>ahora?</p>
+                        </div>   
+                    </div>
+                    <div class="option_buttons">
+                        <button id="btn-cancelar">Cancelar</button>
+                        <button id="btn-comenzar">Comenzar</button>
+                    </div>
+                </div>
+
+                <!-- Record Video -->
+                <div class="content_video" id="content_video">
+                    <div class="encabezado">
+                        <p id="content_video_text">Un Chequeo Antes de Empezar</p>
+                        <img id="close" src="./assets/icons/close.svg" alt="close">
+                    </div>
+
+                    <!-- Video container -->
+                    <div class="mostrar_video">
+                        <video src="#" id="video"></video>
+                        <img id="gif_preview" src="#" alt="gif_preview"> 
+                        <div class="content_info_load" id="content_info_load">
+                            <img src="./assets/img/globe_img.png" alt="globe">
+                            <h2>Estamos subiendo tu guifo…</h2>
+
+                            <!-- Preloader -->
+                            <div class="content_progress_bar" id="content_progress_bar"> 
+                                <div class="progress_bar" id="progress_bar_upload"></div> 
+                            </div>
+                            <p>Tiempo restante: algunos minutos</p>
+                        </div>
+                    </div> 
+                    
+                    <!-- Timer and preloader -->
+                    <div class="content_captura">
+                        <div class="content-time">
+                            <div id="timer">
+                            </div>
+                            <div class="cargando">
+                                <button class="btn_global" id="btn_progress_bar">
+                                    <span id="content-forward">
+                                        <span id="fordware-icon"></span> 
+                                    </span>
+                                </button>
+                                <div class="content_progress_bar"> 
+                                    <div class="progress_bar" id="progress_bar"></div> 
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Capture -->
+                        <div class="content-buttons" >
+                            <div class="capturar" id="capturar">   
+                                <span class="btn_global" id="divisor_cam">
+                                    <span>
+                                        <img id="camera_black" src="./assets/icons/camera.svg" alt="camara">
+                                        <img id="camera_light" src="./assets/icons/camera_light.svg" alt="camera_light">
+                                    </span>
+                                </span>
+                                <button class="btn_global" id="btn-capturar">
+                                    Capturar
+                                </button>
+                            </div>
+
+                            <!-- Ready -->
+                            <div class="recording" id="recording">    
+                                <span class="btn_global" id="divisor_r">
+                                    <span>
+                                        <img src="./assets/icons/recording.svg" alt="recording">
+                                    </span>
+                                </span>
+                                <button class="btn_global" id="btn_listo">
+                                    Listo
+                                </button>   
+                            </div>
+
+                            <!-- Re-record and upload -->
+                            <div class="secondary_buttons" id="secondary_buttons">
+                                <div class="repetir_captura" id="repetir_captura">   
+                                    <button class="btn_global" id="btn_repetir_captura">
+                                        Repetir Captura
+                                    </button>
+                                </div>
+                                
+                                <div class="subir_gifo" id="subir_gifo">    
+                                    <button class="btn_global" id="btn_subir_gifo">
+                                        Subir Guifo
+                                    </button>   
+                                </div>
+                            </div>
+
+                            <!-- Cancel -->
+                            <button class="btn_global" id="btn_cancel_load">Cancelar</button>
+                        </div>
+                    </div>   
+                </div>
+
+                <!-- End -->
+                <div class="content_gifo_upload" id="content_gifo_upload">
+                    <div class="title">
+                        <p>Guifo Subido Con Éxito</p>
+                        <img id="close_gifo_upload" src="./assets/icons/close.svg" alt="close">
+                    </div>
+                    <div class="content_preview">
+                        <div class="preview_gif">
+                            <img id="preview_gif_min" src="#" alt="preview_gif_min">
+                        </div>
+                        <div class="content_buttons">
+                            <div class="content_options">
+                                <h2>Guifo creado con éxito</h2>
+                                <button class="btn_global" id="btn_copy_url_gifo">Copiar Enlace Guifo</button>
+                                <button class="btn_global" id="btn_download_gifo">Descargar Guifo</button>
+                            </div>
+                            <div class="content_listo">
+                                <button class="btn_global" id="btn_listo_upload">Listo</button>
+                            </div>
+                        </div>
+                    </div> 
+                </div>    
+                
+                 <!-- My guifos -->
+                <div class="content-misguifs">
+                    <input type="text" class="input-data" id="mis-guif" value="Mis GuifOS: ">
+                    <div class="gif-creados" id="gif-creados">
+                    </div>
+                </div>
+
+            </section>
+
+        </section> 
+
+    </body>
+
+</html>
