@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     //Api
     const apiKey = 'IlTug0rvBgmJXc07RvNU7D47sks6pUcR'
-    const defaultUrl = 'http://api.giphy.com/v1/gifs'
+    const defaultUrl = 'https://api.giphy.com/v1/gifs' //agregar https
     const searchUrl = `${defaultUrl}/search?q=`
     const trendingUrl = `${defaultUrl}/trending`
 
