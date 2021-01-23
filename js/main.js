@@ -133,30 +133,6 @@ document.addEventListener('DOMContentLoaded', () => {
         guifSugeridos.innerHTML = template
     }
 
-    //const mostrarGuifBuscados = data => {
-    //let template = ''
-    // for (let e of data) {
-    //     if (e.height >= 300) {
-    //         template += `
-    //             <div class="content-foundGif">
-    //                 <div class="loader">
-    //                     <div class="spinner">Loading...</div>
-    //                 </div>
-    //                 <img class="img_buscar" src="${e.image}">
-    //             </div>
-    //         `
-    //     } else {
-    //         template += `
-    //             <div class="content-gifFound-large">
-    //                 <div class="loader">
-    //                     <div class="spinner">Loading...</div>
-    //                 </div>
-    //                 <img class="img_buscar" src="${e.image}">
-    //             </div>                
-    //         `
-    //     }
-    // }
-
     const getGifById = id => {
         const urlById = `${defaultUrl}/${id}?api_key=${apiKey}`
         fetch(urlById)
@@ -291,36 +267,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 goTogif(imgTendencias)
             })
 
-            // for (let e of data.data) {
-            //     let textoDividido = dividirTexto(e.title, 3)
-            //     removeItemFromArr(textoDividido, 'GIF');
-            //     let newText = textoDividido.join(" #")
-
-            //     if (e.images.fixed_height.height >= 200) {
-            //         const template = `
-            //                   <div class="content-giftrending">
-            //                       <div class="loader">
-            //                           <div class="spinner">Loading...</div>
-            //                       </div>
-            //                       <img class="img_tendencias" src="${e.images.fixed_height.url}">
-            //                       <p>#${newText}</p>
-            //                   </div>
-            //               `
-            //         trendingGuif.insertAdjacentHTML('beforeEnd', template)
-            //     } else {
-            //         const template = `
-            //                   <div class="content-giftrending-large">
-            //                       <div class="loader">
-            //                           <div class="spinner">Loading...</div>
-            //                       </div>
-            //                       <img class="img_tendencias" src="${e.images.fixed_height.url}">
-            //                       <p>#${newText}</p>
-            //                   </div>
-            //               `
-            //         trendingGuif.insertAdjacentHTML('beforeEnd', template)
-            //     }
-            //     goTogif(imgTendencias)
-            // }
         })
         .catch(error => console.log(error))
 
@@ -406,6 +352,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
         }
     })
-
 
 })
