@@ -4,38 +4,38 @@ document.addEventListener('DOMContentLoaded', () => {
     let botonCrearGuif = document.getElementById('btn_create_gif')
     let botonDropDown = document.getElementById('btn-select')
     let icon = document.getElementById('icon')
-    //Theme
+        //Theme
     let tema = document.getElementById('theme')
     let changeTema = localStorage.getItem('tema')
     let active = false
     let theme1 = document.getElementById('theme1')
     let theme2 = document.getElementById('theme2')
-    //Search button
+        //Search button
     let inputSearch = document.getElementById('buscador')
     let listaSugerencias = document.getElementById('busqueda_sugerida')
     let searchButton = document.getElementById('btn-buscar')
     let historialBusquedas = document.getElementById('content_busquedas')
     let imgBuscar = document.getElementsByClassName('img_buscar')
-    //Suggestions
+        //Suggestions
     let primerSugerencia = document.getElementById('sugerencia1')
     let segundaSugerencia = document.getElementById('sugerencia2')
     let tercerSugerencia = document.getElementById('sugerencia3')
-    //My Gifos
+        //My Gifos
     let misGifs = document.getElementById('mis_gifos')
-    //Suggested
+        //Suggested
     let guifSugeridos = document.getElementById('guif-sugeridos')
     let inputSugerencias = document.getElementById('sugeridos')
     let imgSugeridos = document.getElementsByClassName('img_sugeridos')
-    //Trending
+        //Trending
     let trendingGuif = document.getElementById('trending')
     let trendingNode = document.getElementById('content-tendencias')
     let imgTendencias = document.getElementsByClassName('img_tendencias')
-    
+
     let search = null
 
     //Api
     const apiKey = 'IlTug0rvBgmJXc07RvNU7D47sks6pUcR'
-    const defaultUrl = 'https://api.giphy.com/v1/gifs' //agregar https
+    const defaultUrl = 'https://api.giphy.com/v1/gifs'
     const searchUrl = `${defaultUrl}/search?q=`
     const trendingUrl = `${defaultUrl}/trending`
 
@@ -49,6 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     //Functions
+
     const loadTheme = () => {
         if (changeTema === "false") {
             console.log('tema2')
@@ -85,7 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const dividirTexto = (e, item) => e.split(" ", item)
-    
+
     //Search history
     const getSearchHistorial = () => {
         let template = `
@@ -98,64 +99,89 @@ document.addEventListener('DOMContentLoaded', () => {
 
     //Click url image
     const goTogif = clas => {
-        for(let i of clas){
+        for (let i of clas) {
             i.addEventListener('click', () => {
-                window.open(i.src, "gif") 
-            }) 
+                window.open(i.src, "gif")
+            })
         }
     }
 
     const mostrarGuifBuscados = data => {
+        console.log("Mostrar data: ", data);
         let template = ''
-        for (let e of data) {
-            if (e.height >= 300) {
-                template += `
-                    <div class="content-foundGif">
-                        <div class="loader">
-                            <div class="spinner">Loading...</div>
-                        </div>
-                        <img class="img_buscar" src="${e.image}">
-                    </div>
-                `
-            } else {
+        data.map((element, index) => {
+            if ((index + 1) % 5 === 0) {
                 template += `
                     <div class="content-gifFound-large">
                         <div class="loader">
                             <div class="spinner">Loading...</div>
                         </div>
-                        <img class="img_buscar" src="${e.image}">
+                        <img class="img_buscar" src="${element.image}">
                     </div>                
                 `
+            } else {
+                template += `
+                    <div class="content-foundGif">
+                        <div class="loader">
+                            <div class="spinner">Loading...</div>
+                        </div>
+                        <img class="img_buscar" src="${element.image}">
+                    </div>
+                `
             }
-        }
+        })
         guifSugeridos.innerHTML = template
     }
+
+    //const mostrarGuifBuscados = data => {
+    //let template = ''
+    // for (let e of data) {
+    //     if (e.height >= 300) {
+    //         template += `
+    //             <div class="content-foundGif">
+    //                 <div class="loader">
+    //                     <div class="spinner">Loading...</div>
+    //                 </div>
+    //                 <img class="img_buscar" src="${e.image}">
+    //             </div>
+    //         `
+    //     } else {
+    //         template += `
+    //             <div class="content-gifFound-large">
+    //                 <div class="loader">
+    //                     <div class="spinner">Loading...</div>
+    //                 </div>
+    //                 <img class="img_buscar" src="${e.image}">
+    //             </div>                
+    //         `
+    //     }
+    // }
 
     const getGifById = id => {
         const urlById = `${defaultUrl}/${id}?api_key=${apiKey}`
         fetch(urlById)
-        .then( res => res.json())
-        .then( res => {
-            res.data
-            const template = `
+            .then(res => res.json())
+            .then(res => {
+                res.data
+                const template = `
                 <div class="mis_guifos">
                     <div class="loader">
                         <div class="spinner">Loading...</div>
                     </div>
-                    <img src="${res.data.images.downsized_large.url}">
+                    <img src="${res.data.images.fixed_height.url}">
                 </div>
-            ` 
-            let seccionMisGifos = document.getElementById('content_mis_gifos') 
-            seccionMisGifos.insertAdjacentHTML("afterbegin", template) 
-        })
+            `
+                let seccionMisGifos = document.getElementById('content_mis_gifos')
+                seccionMisGifos.insertAdjacentHTML("afterbegin", template)
+            })
     }
-    
-    const getGifsById = gifsId => {   
-        for(let id of gifsId){
+
+    const getGifsById = gifsId => {
+        for (let id of gifsId) {
             getGifById(id)
-        }   
-    } 
-    
+        }
+    }
+
     const validarGifsId = () => {
         if (localStorage.getItem('myGifs') !== null) {
             let gifsId = JSON.parse(localStorage.myGifs);
@@ -172,31 +198,32 @@ document.addEventListener('DOMContentLoaded', () => {
     const getSearchResults = search => {
         search = inputSearch.value
         fetch(`${searchUrl}${search}&api_key=${apiKey}&limit=10`)
-        .then(res => res.json())
-        .then(data => {
-            let guifs = []
-            for (let e of data.data) {
-                guifs.push(new GuifOS(
-                    e.images.downsized_large.url,
-                    e.title,
-                    e.images.downsized_large.height,
-                    e.images.downsized_large.width
-                ))
-            }
-            //console.log(guifs)
-            inputSugerencias.value = "Resultados de busqueda"
-            mostrarGuifBuscados(guifs)
-            trendingNode.style.display = "none"
-            listaSugerencias.style.visibility = "hidden"
-            getSearchHistorial() 
-            goTogif(imgBuscar)  
-            return data
-        })
-        .catch(error => {
-            return error
-        })
+            .then(res => res.json())
+            .then(data => {
+                let guifs = []
+                for (let e of data.data) {
+                    guifs.push(new GuifOS(
+                        e.images.fixed_height.url,
+                        e.title,
+                        e.images.fixed_height.height,
+                        e.images.fixed_height.width
+                    ))
+                }
+                //console.log(guifs)
+                inputSugerencias.value = search + " [resultados]"
+                mostrarGuifBuscados(guifs)
+                trendingNode.style.display = "none"
+                listaSugerencias.style.visibility = "hidden"
+                getSearchHistorial()
+                goTogif(imgBuscar)
+                return data
+            })
+            .catch(error => {
+                return error
+            })
     }
-   
+
+
     //Suggested  
     // Bring 4 gifs from trending endpoint    
     tendencias(4, 'pg')
@@ -216,7 +243,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                 <div class="loader">
                                     <div class="spinner">Loading...</div>
                                 </div>
-                                <img class="img_sugeridos" src="${e.images.downsized_large.url}">
+                                <img class="img_sugeridos" src="${e.images.fixed_height.url}">
                                 <button class='btn-verGif' id="btn-verGif">Ver Más</button>
                             </div>
                         </div>
@@ -225,37 +252,39 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             goTogif(imgSugeridos)
         })
-        .catch(error => console.log(error)) 
+        .catch(error => console.log(error))
+
 
     //Trending endpoint    
-    tendencias(10, 'g')
+    tendencias(20, 'g')
         .then(res => res.json())
         .then(data => {
             for (let e of data.data) {
                 let textoDividido = dividirTexto(e.title, 3)
                 removeItemFromArr(textoDividido, 'GIF');
                 let newText = textoDividido.join(" #")
-                if (e.images.downsized_large.height >= 300) {
+
+                if (e.images.fixed_height.height >= 200) {
                     const template = `
-                        <div class="content-giftrending">
-                            <div class="loader">
-                                <div class="spinner">Loading...</div>
-                            </div>
-                            <img class="img_tendencias" src="${e.images.downsized_large.url}">
-                            <p>#${newText}</p>
-                        </div>
-                    `
+                              <div class="content-giftrending">
+                                  <div class="loader">
+                                      <div class="spinner">Loading...</div>
+                                  </div>
+                                  <img class="img_tendencias" src="${e.images.fixed_height.url}">
+                                  <p>#${newText}</p>
+                              </div>
+                          `
                     trendingGuif.insertAdjacentHTML('beforeEnd', template)
                 } else {
                     const template = `
-                        <div class="content-giftrending-large">
-                            <div class="loader">
-                                <div class="spinner">Loading...</div>
-                            </div>
-                            <img class="img_tendencias" src="${e.images.downsized_large.url}">
-                            <p>#${newText}</p>
-                        </div>
-                    `
+                              <div class="content-giftrending-large">
+                                  <div class="loader">
+                                      <div class="spinner">Loading...</div>
+                                  </div>
+                                  <img class="img_tendencias" src="${e.images.fixed_height.url}">
+                                  <p>#${newText}</p>
+                              </div>
+                          `
                     trendingGuif.insertAdjacentHTML('beforeEnd', template)
                 }
                 goTogif(imgTendencias)
@@ -280,15 +309,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Change theme
     botonDropDown.addEventListener('click', mostrarMenu);
+
     //Theme 1
     theme1.addEventListener('click', () => {
-        tema.setAttribute('href', './css/style.css')
-        icon.setAttribute('href', './assets/logo/logo-icon/gifOF_logo.ico')
-        mostrarMenu()
-        active = true
-        localStorage.setItem('tema', active)
-    })
-    //Theme 2
+            tema.setAttribute('href', './css/style.css')
+            icon.setAttribute('href', './assets/logo/logo-icon/gifOF_logo.ico')
+            mostrarMenu()
+            active = true
+            localStorage.setItem('tema', active)
+        })
+        //Theme 2  
     theme2.addEventListener('click', () => {
         tema.setAttribute('href', './css/sailor_night.css')
         icon.setAttribute('href', './assets/logo/logo-icon/gifOF_logo_dark.ico')
@@ -300,38 +330,50 @@ document.addEventListener('DOMContentLoaded', () => {
     misGifs.addEventListener('click', () => {
         console.log('click')
         let seccionBuscar = document.getElementById('content-buscar')
-        seccionBuscar.style.display = "none" 
+        seccionBuscar.style.display = "none"
         inputSugerencias.value = "Mis Gifos"
         trendingNode.style.display = "none"
         listaSugerencias.style.visibility = "hidden"
         guifSugeridos.style.display = "none"
-        historialBusquedas.style.display="none"
-        validarGifsId()   
-    })   
-     
-    //Searcher
+        historialBusquedas.style.display = "none"
+        validarGifsId()
+    })
+
+    //Searcher                             
     inputSearch.addEventListener("keyup", (event) => {
-            if (inputSearch.value === "" || event.code == "Space") {
-                listaSugerencias.style.visibility = "hidden"
-                searchButton.className = 'btn_inactive'
-            } else {
-                listaSugerencias.style.visibility = "visible"
-                searchButton.className = 'btn_active'
-                searchButton.disabled = !searchButton.disabled
-                getSearchByName()
-                primerSugerencia.innerText = search
-            }
-        })
-    
+        if (inputSearch.value === "" || event.code == "Space") {
+            listaSugerencias.style.visibility = "hidden"
+            searchButton.className = 'btn_basic btn_inactive'
+            searchButton.disabled = true;
+        } else {
+            listaSugerencias.style.visibility = "visible"
+            searchButton.className = 'btn_basic btn_active'
+            searchButton.disabled = !searchButton.disabled
+            getSearchByName()
+            primerSugerencia.innerText = search
+        }
+    })
+
+
     searchButton.addEventListener('click', getSearchResults)
-    
+
     primerSugerencia.addEventListener('click', getSearchResults)
-    
+
     segundaSugerencia.addEventListener('click', () => {
         getSearchSugerencias('deportes')
-    }) 
-    
+    })
+
     tercerSugerencia.addEventListener('click', () => {
         getSearchSugerencias('animales')
     })
+
+    // CLICK ENTER
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter') {
+            getSearchResults()
+
+        }
+    })
+
+
 })
