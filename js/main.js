@@ -259,36 +259,68 @@ document.addEventListener('DOMContentLoaded', () => {
     tendencias(20, 'g')
         .then(res => res.json())
         .then(data => {
-            for (let e of data.data) {
-                let textoDividido = dividirTexto(e.title, 3)
+            data.data.map((element, index) => {
+                let textoDividido = dividirTexto(element.title, 3)
                 removeItemFromArr(textoDividido, 'GIF');
                 let newText = textoDividido.join(" #")
 
-                if (e.images.fixed_height.height >= 200) {
+                if ((index + 1) % 5 === 0) {
+                    const template = `
+                    <div class="content-giftrending-large">
+                        <div class="loader">
+                            <div class="spinner">Loading...</div>
+                        </div>
+                        <img class="img_tendencias" src="${element.images.fixed_height.url}">
+                        <p>#${newText}</p>
+                    </div>
+                `
+                    trendingGuif.insertAdjacentHTML('beforeEnd', template)
+                } else {
                     const template = `
                               <div class="content-giftrending">
                                   <div class="loader">
                                       <div class="spinner">Loading...</div>
                                   </div>
-                                  <img class="img_tendencias" src="${e.images.fixed_height.url}">
-                                  <p>#${newText}</p>
-                              </div>
-                          `
-                    trendingGuif.insertAdjacentHTML('beforeEnd', template)
-                } else {
-                    const template = `
-                              <div class="content-giftrending-large">
-                                  <div class="loader">
-                                      <div class="spinner">Loading...</div>
-                                  </div>
-                                  <img class="img_tendencias" src="${e.images.fixed_height.url}">
+                                  <img class="img_tendencias" src="${element.images.fixed_height.url}">
                                   <p>#${newText}</p>
                               </div>
                           `
                     trendingGuif.insertAdjacentHTML('beforeEnd', template)
                 }
+
                 goTogif(imgTendencias)
-            }
+            })
+
+            // for (let e of data.data) {
+            //     let textoDividido = dividirTexto(e.title, 3)
+            //     removeItemFromArr(textoDividido, 'GIF');
+            //     let newText = textoDividido.join(" #")
+
+            //     if (e.images.fixed_height.height >= 200) {
+            //         const template = `
+            //                   <div class="content-giftrending">
+            //                       <div class="loader">
+            //                           <div class="spinner">Loading...</div>
+            //                       </div>
+            //                       <img class="img_tendencias" src="${e.images.fixed_height.url}">
+            //                       <p>#${newText}</p>
+            //                   </div>
+            //               `
+            //         trendingGuif.insertAdjacentHTML('beforeEnd', template)
+            //     } else {
+            //         const template = `
+            //                   <div class="content-giftrending-large">
+            //                       <div class="loader">
+            //                           <div class="spinner">Loading...</div>
+            //                       </div>
+            //                       <img class="img_tendencias" src="${e.images.fixed_height.url}">
+            //                       <p>#${newText}</p>
+            //                   </div>
+            //               `
+            //         trendingGuif.insertAdjacentHTML('beforeEnd', template)
+            //     }
+            //     goTogif(imgTendencias)
+            // }
         })
         .catch(error => console.log(error))
 

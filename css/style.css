@@ -607,7 +607,7 @@ li a {
 
 .content-foundGif {
     width: 24%;
-    height: 304px;
+    height: 298px;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -639,7 +639,7 @@ li a {
 
 .content-gifFound-large {
     width: 49%;
-    height: 304px;
+    height: 298px;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -860,12 +860,21 @@ li a {
 @media screen and (max-width: 1600px) {
     #btn-verGif {
         margin-right: 180px;
+        align-items: center;
     }
 }
 
 @media screen and (max-width: 1600px) {
     #btn-verGif {
         margin-right: 140px;
+        align-items: center;
+    }
+}
+
+@media screen and (max-width: 1650px) {
+    #btn-verGif {
+        margin-right: 140px;
+        align-items: center;
     }
 }
 
@@ -887,6 +896,7 @@ li a {
 @media screen and (max-width: 850px) {
     #btn-verGif {
         margin-left: 80px;
+        align-items: center;
     }
 }
 
@@ -1033,12 +1043,14 @@ li a {
 @media screen and (max-width: 1600px) {
     #btn-verGif {
         margin-right: 180px;
+        align-items: center;
     }
 }
 
 @media screen and (max-width: 1600px) {
     #btn-verGif {
         margin-right: 140px;
+        align-items: center;
     }
 }
 
@@ -1060,6 +1072,7 @@ li a {
 @media screen and (max-width: 850px) {
     #btn-verGif {
         margin-left: 80px;
+        align-items: center;
     }
 }
 
@@ -1087,7 +1100,7 @@ li a {
 
 .content-tendencias .trending_gifs .content-giftrending {
     width: 24%;
-    height: 304px;
+    height: 298px;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -1137,7 +1150,7 @@ li a {
 
 .content-tendencias .trending_gifs .content-giftrending-large {
     width: 49%;
-    height: 304px;
+    height: 298px;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -1220,7 +1233,7 @@ li a {
 
 .content_mis_gifos .mis_guifos {
     width: 24%;
-    height: 304px;
+    height: 298px;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
